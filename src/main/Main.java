@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.ges.Menu;
+import main.ges.T4raya;
+import main.juegos.Juego4raya;
 
 import java.io.IOException;
 
@@ -19,6 +21,8 @@ public class Main extends Application {
     private static Scene sMenu;
     private static Scene s4;
     private static Scene s3;
+
+    private static Juego4raya juego4raya;
 
     //private Menu menu;
 
@@ -42,7 +46,9 @@ public class Main extends Application {
         sMenu = new Scene(menu);
         s3 = new Scene(t3raya);
         s4 = new Scene(t4raya);
-
+    }
+    private void prepararJuegos(){
+        juego4raya = new Juego4raya();
     }
 
     public static void cargaMenu(){
@@ -61,7 +67,6 @@ public class Main extends Application {
         stage.setScene(s4);
         stage.setResizable(false);
         stage.setResizable(true);
-        System.out.println("hecho");
     }
 
 
