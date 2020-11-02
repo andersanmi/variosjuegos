@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ges.Menu">
+   <center>
+      <AnchorPane prefHeight="429.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text layoutX="289.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hola" />
+            <Button fx:id="raya4" layoutX="53.0" layoutY="98.0" mnemonicParsing="false" onAction="#click4" text="4 en raya" />
+            <Button fx:id="raya3" layoutX="53.0" layoutY="147.0" mnemonicParsing="false" onAction="#click3" text="3 en raya" />
+            <Button fx:id="bok" layoutX="53.0" layoutY="188.0" mnemonicParsing="false" onAction="#okclick" text="ok" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
