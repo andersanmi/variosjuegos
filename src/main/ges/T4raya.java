@@ -9,8 +9,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class T4raya implements Initializable {
+    //pruebas
     public Button bok;
     public Button cReturn;
+
+
+    public Button b0,b01,b02,b03,b04,b05,b06,b07,b08;
+
 
 
     @Override
@@ -34,10 +39,12 @@ public class T4raya implements Initializable {
     public void clickB7() {}
     public void clickB8() {}
 
-    public void clickMenuBiJok() {}
-    public void clickMenuJOErraza() {}
-    public void clickMenuJOZaila() {}
+    public void click2jugadores() {}
+    public void clickIAfacil() {}
+    public void clickIAdificil() {}
     public void clickReiniciar() {}
+
+
 
 
 }
