@@ -1,4 +1,4 @@
-package main.juegos;
+package main.juegos.raya4;
 
 public class Juego4raya {
     private static boolean[][] ocupados,ocRojos,ocAzul;
@@ -56,11 +56,25 @@ public class Juego4raya {
         return false;
     }
 
+    public int iaFacil(){
+        IAFacil ia = new IAFacil();
+        return ia.selCollum();
+    }
+
 
     //metodos para pruebas
     public static void printMatrix(){
+        printMatrixSel(ocupados);
+        /*
+        System.out.println("azul");
+        printMatrixSel(ocAzul);
+        System.out.println("rojo");
+        printMatrixSel(ocRojos);
+        */
+    }
+
+    public static void printMatrixSel(boolean[][] mat){
         System.out.println("============");
-        boolean[][] mat = ocupados;
         for (boolean [] y:mat) {
             System.out.println();
             for (boolean x:y) {

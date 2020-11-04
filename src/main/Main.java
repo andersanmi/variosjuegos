@@ -5,9 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import main.ges.Menu;
-import main.ges.T4raya;
-import main.juegos.Juego4raya;
+import main.juegos.raya4.Juego4raya;
 
 import java.io.IOException;
 
