@@ -22,7 +22,7 @@ public class Main extends Application {
     private static Scene s4;
     private static Scene s3;
 
-    private static Juego4raya juego4raya;
+    private static Juego4raya juego4raya = Juego4raya.getJuego4raya();;
 
     //private Menu menu;
 
@@ -47,9 +47,6 @@ public class Main extends Application {
         s3 = new Scene(t3raya);
         s4 = new Scene(t4raya);
     }
-    private void prepararJuegos(){
-        juego4raya = new Juego4raya();
-    }
 
     public static void cargaMenu(){
         stage.setScene(sMenu);
@@ -62,8 +59,8 @@ public class Main extends Application {
     }
 
     public static void carga4raya(){
-        System.out.println("cargo nueva ventana");
         stage.setTitle("4 en raya");
+        juego4raya.cargarJuego();
         stage.setScene(s4);
         stage.setResizable(false);
         stage.setResizable(true);

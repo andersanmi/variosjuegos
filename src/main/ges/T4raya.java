@@ -47,9 +47,8 @@ public class T4raya implements Initializable {
 
     }
     private void cargaMatriz(){
-        Bounds ey = grid.getCellBounds(1,1);
-        System.out.println();
-        matrizCirculos = new Circle[9][6];
+        matrizCirculos = new Circle[6][9];
+
     }
 
     public void clickB0(ActionEvent actionEvent) {Juego4raya.meteFicha(0);}
