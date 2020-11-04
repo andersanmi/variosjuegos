@@ -8,6 +8,8 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -52,47 +54,47 @@
                   <RowConstraints maxHeight="191.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button fx:id="b8" mnemonicParsing="false" onAction="#clickB8" prefHeight="40.0" prefWidth="63.0" GridPane.columnIndex="8">
+                  <Button fx:id="b8" mnemonicParsing="false" onAction="#clickB8" onMouseEntered="#b8In" prefHeight="40.0" prefWidth="63.0" GridPane.columnIndex="8">
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="b7" mnemonicParsing="false" onAction="#clickB7" prefHeight="44.0" prefWidth="63.0" GridPane.columnIndex="7">
+                  <Button fx:id="b7" mnemonicParsing="false" onAction="#clickB7" onMouseEntered="#b7In" onMouseExited="#b7Exit" prefHeight="44.0" prefWidth="63.0" GridPane.columnIndex="7">
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="b6" mnemonicParsing="false" onAction="#clickB6" prefHeight="44.0" prefWidth="63.0" GridPane.columnIndex="6">
+                  <Button fx:id="b6" mnemonicParsing="false" onAction="#clickB6" onMouseEntered="#b6In" onMouseExited="#b6Exit" prefHeight="44.0" prefWidth="63.0" GridPane.columnIndex="6">
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="b5" mnemonicParsing="false" onAction="#clickB5" prefHeight="44.0" prefWidth="63.0" GridPane.columnIndex="5">
+                  <Button fx:id="b5" mnemonicParsing="false" onAction="#clickB5" onMouseEntered="#b5In" onMouseExited="#b5Exit" prefHeight="44.0" prefWidth="63.0" GridPane.columnIndex="5">
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="b4" mnemonicParsing="false" onAction="#clickB4" prefHeight="42.0" prefWidth="62.0" GridPane.columnIndex="4">
+                  <Button fx:id="b4" mnemonicParsing="false" onAction="#clickB4" onMouseEntered="#b4In" onMouseExited="#b4Exit" prefHeight="42.0" prefWidth="62.0" GridPane.columnIndex="4">
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="b3" mnemonicParsing="false" onAction="#clickB3" prefHeight="42.0" prefWidth="62.0" GridPane.columnIndex="3">
+                  <Button fx:id="b3" mnemonicParsing="false" onAction="#clickB3" onMouseEntered="#b3In" onMouseExited="#b3Exit" prefHeight="42.0" prefWidth="62.0" GridPane.columnIndex="3">
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="b2" mnemonicParsing="false" onAction="#clickB2" prefHeight="43.0" prefWidth="62.0" GridPane.columnIndex="2">
+                  <Button fx:id="b2" mnemonicParsing="false" onAction="#clickB2" onMouseEntered="#b2In" onMouseExited="#b2Exit" prefHeight="43.0" prefWidth="62.0" GridPane.columnIndex="2">
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="b1" mnemonicParsing="false" onAction="#clickB1" prefHeight="125.0" prefWidth="62.0" GridPane.columnIndex="1">
+                  <Button fx:id="b1" mnemonicParsing="false" onAction="#clickB1" onMouseEntered="#b1In" onMouseExited="#b1Exit" prefHeight="125.0" prefWidth="62.0" GridPane.columnIndex="1">
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="b0" mnemonicParsing="false" onAction="#clickB0" prefHeight="105.0" prefWidth="62.0">
+                  <Button fx:id="b0" mnemonicParsing="false" onAction="#clickB0" onMouseEntered="#b0In" onMouseExited="#b0Exit" prefHeight="105.0" prefWidth="62.0">
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
@@ -158,6 +160,16 @@
                   <Font size="24.0" />
                </font>
             </Label>
+            <ImageView fx:id="flechaRoja" fitHeight="32.0" fitWidth="35.0" layoutX="78.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/flechaRoja.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="flechaAzul" fitHeight="32.0" fitWidth="36.0" layoutX="33.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/flechaAzul.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </center>

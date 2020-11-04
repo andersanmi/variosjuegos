@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.paint.Color;
 import main.Main;
@@ -21,9 +23,16 @@ public class T4raya implements Initializable {
 
 
     public Button b0,b1,b2,b3,b4,b5,b6,b7,b8;
+    public ArrayList<Button> listaBotones = new ArrayList<>();
+    public Button actualButton=null;
+
 
     public Circle k00,k01,k02,k03,k04,k05,k10,k11,k12,k13,k14,k15,k20,k21,k22,k23,k24,k25,k30,k31,k32,k33,k34,k35,k40,k41,k42,k43,k44,k45,k50,k51,k52,k53,k54,k55,k60,k61,k62,k63,k64,k65,k70,k71,k72,k73,k74,k75,k80,k81,k82,k83,k84,k85;
     public ArrayList<ArrayList<Circle>> matrizCirculos = new ArrayList<>();
+
+    public ImageView flechaAzul,flechaRoja;
+    private ImageView imagenVacia=new ImageView();
+
 
     public Label textModoJuego;
 
@@ -52,7 +61,10 @@ public class T4raya implements Initializable {
     public void cargarJuego(){
         //estructura datos
         cargaMatriz();
+        cargaListaBotones();
         jugadorActual="azul";
+        flechaAzul.setVisible(false);
+        flechaRoja.setVisible(false);
         //cambios interfaz
         textModoJuego.setText(modoDeJuego);
 
@@ -70,6 +82,8 @@ public class T4raya implements Initializable {
         catch (InterruptedException e) { e.printStackTrace(); }
     }
     private void cambiaJugador(){
+        //antes de hacer un cambio de jugador mirar si este ha ganado la partida
+        //o si la partida esta completada, tablero lleno
         if(jugadorActual=="azul"){ jugadorActual="rojo"; }
         else if(jugadorActual=="rojo"){ jugadorActual="azul"; }
     }
@@ -118,6 +132,49 @@ public class T4raya implements Initializable {
     public void clickB6(ActionEvent actionEvent) {accionBoton(6);}
     public void clickB7(ActionEvent actionEvent) {accionBoton(7);}
     public void clickB8(ActionEvent actionEvent) {accionBoton(8);}
+
+    //para animacion de flechas
+    public void b0In(MouseEvent mouseEvent)   { Entered(0); }
+    public void b0Exit(MouseEvent mouseEvent) { Exited(0); }
+    public void b1In(MouseEvent mouseEvent)   { Entered(1); }
+    public void b1Exit(MouseEvent mouseEvent) { Exited(1); }
+    public void b2In(MouseEvent mouseEvent)   { Entered(2); }
+    public void b2Exit(MouseEvent mouseEvent) { Exited(2); }
+    public void b3In(MouseEvent mouseEvent)   { Entered(3); }
+    public void b3Exit(MouseEvent mouseEvent) { Exited(3); }
+    public void b4In(MouseEvent mouseEvent)   { Entered(4); }
+    public void b4Exit(MouseEvent mouseEvent) { Exited(4); }
+    public void b5In(MouseEvent mouseEvent)   { Entered(5); }
+    public void b5Exit(MouseEvent mouseEvent) { Exited(5); }
+    public void b6In(MouseEvent mouseEvent)   { Entered(6); }
+    public void b6Exit(MouseEvent mouseEvent) { Exited(6); }
+    public void b7In(MouseEvent mouseEvent)   { Entered(7); }
+    public void b7Exit(MouseEvent mouseEvent) { Exited(7); }
+    public void b8In(MouseEvent mouseEvent)   { Entered(8); }
+    public void b8Exit(MouseEvent mouseEvent) { Exited(8); }
+
+
+
+
+
+
+    public void Entered(int bId){
+        Button boton = listaBotones.get(bId);
+        if (jugadorActual == "rojo") {
+            flechaRoja.setVisible(true);
+            boton.setGraphic(flechaRoja);
+        }else{
+            flechaAzul.setVisible(true);
+            boton.setGraphic(flechaAzul);
+        }
+        //actualButton=botoia;
+    }
+
+    public void Exited(int bId){
+        Button boton = listaBotones.get(bId);
+        boton.setGraphic(imagenVacia);
+        //actualButton=null;
+    }
 
 
 
@@ -212,6 +269,18 @@ public class T4raya implements Initializable {
         matrizCirculos.add(fila6);
         matrizCirculos.add(fila7);
         matrizCirculos.add(fila8);
+    }
+    private void cargaListaBotones(){
+        listaBotones.add(b0);
+        listaBotones.add(b1);
+        listaBotones.add(b2);
+        listaBotones.add(b3);
+        listaBotones.add(b4);
+        listaBotones.add(b5);
+        listaBotones.add(b6);
+        listaBotones.add(b7);
+        listaBotones.add(b8);
+
     }
 
 }
