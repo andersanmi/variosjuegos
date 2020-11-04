@@ -60,6 +60,10 @@ public class Juego4raya {
         IAFacil ia = new IAFacil();
         return ia.selCollum();
     }
+    public int iaDificil(){
+        IADificil ia = new IADificil(ocupados,ocRojos,ocAzul);
+        return ia.selCollum();
+    }
 
 
     //metodos para pruebas

@@ -65,6 +65,10 @@ public class T4raya implements Initializable {
         }
         Juego4raya.getJuego4raya().reiniciarJuego();
     }
+    private void delay(){
+        try { TimeUnit.MILLISECONDS.sleep(200); }
+        catch (InterruptedException e) { e.printStackTrace(); }
+    }
     private void cambiaJugador(){
         if(jugadorActual=="azul"){ jugadorActual="rojo"; }
         else if(jugadorActual=="rojo"){ jugadorActual="azul"; }
@@ -74,17 +78,19 @@ public class T4raya implements Initializable {
             cambiaJugador();
         }
         if(modoDeJuego=="IA facil"){
-            try {
-                TimeUnit.MILLISECONDS.sleep(400);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            delay();
             cambiaJugador();
             int pos = Juego4raya.getJuego4raya().iaFacil();
             int fila = Juego4raya.getJuego4raya().meteFicha(pos,jugadorActual);
-            if(fila!=-1) {//es -1 cuando la fila esta completa
-                coloreaCirculo(fila, pos);
-            }
+            if(fila!=-1) { coloreaCirculo(fila, pos); }
+            cambiaJugador();
+        }
+        if(modoDeJuego=="IA dificil"){
+            delay();
+            cambiaJugador();
+            int pos = Juego4raya.getJuego4raya().iaDificil();
+            int fila = Juego4raya.getJuego4raya().meteFicha(pos,jugadorActual);
+            if(fila!=-1) { coloreaCirculo(fila, pos); }
             cambiaJugador();
         }
     }
