@@ -124,6 +124,7 @@ public class T4raya implements Initializable {
     //menu
     private void cambioModoDeJuego(String modo){
         modoDeJuego=modo;
+        textModoJuego.setText(modo);
         resetearJuego();
     }
     public void click2jugadores() { cambioModoDeJuego("2 jugadores"); }
