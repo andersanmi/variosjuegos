@@ -13,13 +13,30 @@ public class IADificil {
         gorri=pgorri;
         urdin=purdin;
     }
+    private void inverMat(){
+        boolean[][] nTablero = new boolean[9][6];
+        boolean[][] nRojo = new boolean[9][6];
+        boolean[][] nAzul = new boolean[9][6];
+        for(int x=0;x<6;x++){
+            for(int y=0;y<9;y++){
+                nTablero[y][x]=tableroa[x][y];
+                nRojo[y][x]=gorri[x][y];
+                nAzul[y][x]=urdin[x][y];
+            }
+        }
+        tableroa=nTablero;
+        gorri=nRojo;
+        urdin=nAzul;
+    }
 
     public int selCollum(){
+        inverMat();
         ArrayList<Integer> zutPunt = new ArrayList<>();
+        System.out.println(tableroa.length);
         for (int zutabe=0;zutabe<tableroa.length;zutabe++) {//confirmar que estoy pillando zutabez y no ilaras
             int valor = calcularValor(zutabe);
             zutPunt.add(valor);
-            //System.out.println("valor conseguido  "+valor);
+            System.out.println("valor conseguido  "+valor);
         }
         //System.out.println(zutPunt);
         //System.out.println("zutabe elegida: "+getMaxIndex(zutPunt));
