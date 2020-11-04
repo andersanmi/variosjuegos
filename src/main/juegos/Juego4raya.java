@@ -12,20 +12,28 @@ public class Juego4raya {
         ocupados = new boolean[6][9];
         ocRojos = new boolean[6][9];
         ocAzul = new boolean[6][9];
-
+    }
+    public void reiniciarJuego(){
+        ocupados = new boolean[6][9];
+        ocRojos = new boolean[6][9];
+        ocAzul = new boolean[6][9];
     }
 
-    public static int meteFicha(int colum){
+    public static int meteFicha(int colum,String color){
+        int fila = -1;
         if(!ocupados[0][colum]){//hay hueco
             for (int i=0;i<6;i++){
                 if(!ocupados[5-i][colum]){
-                    ocupados[5-i][colum]=true;
-                    return 5-i;
+                    fila = 5-i;
+                    ocupados[fila][colum]=true;
+                    break;
                 }
             }
+            if(color=="rojo") ocRojos[fila][colum]=true;
+            if(color=="azul") ocAzul[fila][colum]=true;
         }
-        System.out.println("error columna llena");
-        return -1;
+        else System.out.println("error columna llena");
+        return fila;
     }
     public static void edit(int fila, int columna){
         ocupados[fila][columna] = true;
@@ -42,6 +50,7 @@ public class Juego4raya {
     public static boolean[][] getOcRojos() {
         return ocRojos;
     }
+
 
     public static boolean hay4raya(){
         return false;

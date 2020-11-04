@@ -11,7 +11,6 @@ import javafx.scene.paint.Color;
 import main.Main;
 import main.juegos.Juego4raya;
 
-import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -26,7 +25,7 @@ public class T4raya implements Initializable {
 
     public Circle k00,k01,k02,k03,k04,k05,k10,k11,k12,k13,k14,k15,k20,k21,k22,k23,k24,k25,k30,k31,k32,k33,k34,k35,k40,k41,k42,k43,k44,k45,k50,k51,k52,k53,k54,k55,k60,k61,k62,k63,k64,k65,k70,k71,k72,k73,k74,k75,k80,k81,k82,k83,k84,k85;
     public ArrayList<ArrayList<Circle>> matrizCirculos = new ArrayList<>();
-    public GridPane grid;
+    public String jugadorActual = "azul";
 
 
 
@@ -46,10 +45,24 @@ public class T4raya implements Initializable {
     }
 
     public void cargarJuego(){
-        //tableroak hasieratu
         cargaMatriz();
+    }
+    public void resetearJuego(){
+        for (ArrayList<Circle> fila:matrizCirculos){
+            for (Circle circulo:fila){
+                circulo.setFill(Color.WHITESMOKE);
+            }
+        }
+        Juego4raya.getJuego4raya().reiniciarJuego();
+    }
+    public void cambiarTurno(){
+        System.out.println("estoy en  "+jugadorActual);
+        if(jugadorActual=="azul"){ jugadorActual="rojo"; }
+        else if(jugadorActual=="rojo"){ jugadorActual="azul"; }
+        System.out.println("cambio a  "+jugadorActual);
 
     }
+
     private void cargaMatriz(){
         ArrayList<Circle> fila0 = new ArrayList<>();
             fila0.add(k00);
@@ -126,14 +139,18 @@ public class T4raya implements Initializable {
         matrizCirculos.add(fila8);
     }
     public void coloreaCirculo(int fila, int columna){
-        //k00.setFill(Color.RED);
         Circle cir = matrizCirculos.get(columna).get(fila);
-        cir.setFill(Color.RED);
+        if(jugadorActual=="rojo") cir.setFill(Color.RED);
+        if(jugadorActual=="azul") cir.setFill(Color.BLUE);
+
 
     }
     public void accionBoton(int numeroBoton){
-        int fila = Juego4raya.getJuego4raya().meteFicha(numeroBoton);
-        if(fila!=-1) coloreaCirculo(fila,numeroBoton);
+        int fila = Juego4raya.getJuego4raya().meteFicha(numeroBoton,jugadorActual);
+        if(fila!=-1){//es -1 cuando la fila esta completa
+            coloreaCirculo(fila,numeroBoton);
+            cambiarTurno();
+        }
         Juego4raya.getJuego4raya().printMatrix();
     }
 
@@ -151,7 +168,9 @@ public class T4raya implements Initializable {
     public void click2jugadores() {}
     public void clickIAfacil() {}
     public void clickIAdificil() {}
-    public void clickReiniciar() {}
+    public void clickReiniciar() {
+        resetearJuego();
+    }
 
 
 
