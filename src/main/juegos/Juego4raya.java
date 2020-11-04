@@ -49,7 +49,9 @@ public class Juego4raya {
 
 
     //metodos para pruebas
-    public static void printMatrix(boolean[][] mat){
+    public static void printMatrix(){
+        System.out.println("============");
+        boolean[][] mat = ocupados;
         for (boolean [] y:mat) {
             System.out.println();
             for (boolean x:y) {
@@ -59,5 +61,7 @@ public class Juego4raya {
                 System.out.print(val);
             }
         }
+        System.out.println();
+        System.out.println("============");
     }
 }

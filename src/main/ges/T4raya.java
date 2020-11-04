@@ -51,7 +51,9 @@ public class T4raya implements Initializable {
 
     }
 
-    public void clickB0(ActionEvent actionEvent) {Juego4raya.meteFicha(0);}
+    public void clickB0(ActionEvent actionEvent) {Juego4raya.getJuego4raya().meteFicha(0);
+        Juego4raya.getJuego4raya().printMatrix();
+    }
     public void clickB1() {}
     public void clickB2() {}
     public void clickB3() {}
