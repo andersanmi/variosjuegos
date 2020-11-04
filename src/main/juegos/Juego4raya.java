@@ -15,17 +15,17 @@ public class Juego4raya {
 
     }
 
-    public static boolean meteFicha(int colum){
+    public static int meteFicha(int colum){
         if(!ocupados[0][colum]){//hay hueco
             for (int i=0;i<6;i++){
                 if(!ocupados[5-i][colum]){
                     ocupados[5-i][colum]=true;
-                    return true;
+                    return 5-i;
                 }
             }
         }
         System.out.println("error columna llena");
-        return false;
+        return -1;
     }
     public static void edit(int fila, int columna){
         ocupados[fila][columna] = true;

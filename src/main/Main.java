@@ -61,6 +61,7 @@ public class Main extends Application {
     public static void carga4raya(){
         stage.setTitle("4 en raya");
         juego4raya.cargarJuego();
+
         stage.setScene(s4);
         stage.setResizable(false);
         stage.setResizable(true);
