@@ -81,6 +81,7 @@ public class T4raya implements Initializable {
         try { TimeUnit.MILLISECONDS.sleep(200); }
         catch (InterruptedException e) { e.printStackTrace(); }
     }
+
     private void cambiaJugador(){
         //antes de hacer un cambio de jugador mirar si este ha ganado la partida
         //o si la partida esta completada, tablero lleno
