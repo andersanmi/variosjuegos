@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -43,15 +42,105 @@
                   <RowConstraints maxHeight="191.0" minHeight="10.0" prefHeight="68.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Rectangle fx:id="k20" arcHeight="5.0" arcWidth="5.0" fill="#09b22e" height="100.0" onMouseClicked="#click20" onMouseEntered="#k20In" onMouseExited="#k20Exit" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="100.0" GridPane.rowIndex="2" />
-                  <Rectangle fx:id="k21" arcHeight="5.0" arcWidth="5.0" fill="#09b22e" height="100.0" onMouseClicked="#click21" onMouseEntered="#k21In" onMouseExited="#k21Exit" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Rectangle fx:id="k22" arcHeight="5.0" arcWidth="5.0" fill="#09b22e" height="100.0" onMouseClicked="#click22" onMouseEntered="#k22In" onMouseExited="#k22Exit" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <Button maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" text="Button" />
-                  <Button maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" text="Button" GridPane.rowIndex="1" />
-                  <Button maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" text="Button" GridPane.columnIndex="1" />
-                  <Button maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <Button maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" style="-fx-border-width: 3; -fx-border-color: black;" textFill="#333614" GridPane.columnIndex="2" />
+                  <Button fx:id="b00" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#click00" onMouseEntered="#b00In" onMouseExited="#b00Exit" style="-fx-border-width: 3; -fx-border-color: black;" textFill="#333614" />
+                  <Button fx:id="b10" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#click10" onMouseEntered="#b10In" onMouseExited="#b10Exit" style="-fx-border-width: 3; -fx-border-color: black;" textFill="#333614" GridPane.rowIndex="1" />
+                  <Button fx:id="b20" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#click20" onMouseEntered="#b20In" onMouseExited="#b20Exit" style="-fx-border-width: 3; -fx-border-color: black;" textFill="#333614" GridPane.rowIndex="2" />
+                  <Button fx:id="b01" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#click01" onMouseEntered="#b01In" onMouseExited="#b01Exit" style="-fx-border-width: 3; -fx-border-color: black;" textFill="#333614" GridPane.columnIndex="1" />
+                  <Button fx:id="b11" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#click11" onMouseEntered="#b11In" onMouseExited="#b11Exit" style="-fx-border-width: 3; -fx-border-color: black;" textFill="#333614" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="b21" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#click21" onMouseEntered="#b21In" onMouseExited="#b21Exit" style="-fx-border-width: 3; -fx-border-color: black;" textFill="#333614" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Button fx:id="b02" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#click02" onMouseEntered="#b02In" onMouseExited="#b02Exit" style="-fx-border-width: 3; -fx-border-color: black;" textFill="#333614" GridPane.columnIndex="2" />
+                  <Button fx:id="b12" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#click12" onMouseEntered="#b12In" onMouseExited="#b12Exit" style="-fx-border-width: 3; -fx-border-color: black;" textFill="#333614" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Button fx:id="b22" maxHeight="100.0" maxWidth="100.0" minHeight="100.0" minWidth="100.0" mnemonicParsing="false" onAction="#click22" onMouseEntered="#b22In" onMouseExited="#b22Exit" style="-fx-border-width: 3; -fx-border-color: black;" textFill="#333614" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <ImageView fx:id="circulo11" fitHeight="65.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <image>
+                        <Image url="@../images/circulo.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="circulo00" fitHeight="65.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="@../images/circulo.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="circulo01" fitHeight="65.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="@../images/circulo.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="circulo10" fitHeight="65.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../images/circulo.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="circulo20" fitHeight="65.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@../images/circulo.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="circulo21" fitHeight="65.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@../images/circulo.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="circulo12" fitHeight="65.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../images/circulo.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="circulo22" fitHeight="65.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@../images/circulo.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="circulo02" fitHeight="65.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="@../images/circulo.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="equis00" fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="@../images/equis.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="equis01" fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="@../images/equis.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="equis10" fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../images/equis.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="equis11" fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../images/equis.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="equis12" fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../images/equis.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="equis02" fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="@../images/equis.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="equis20" fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@../images/equis.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="equis21" fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@../images/equis.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="equis22" fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@../images/equis.png" />
+                     </image>
+                  </ImageView>
                </children>
             </GridPane>
             <Label fx:id="textModoJuego" layoutX="306.0" layoutY="23.0" prefHeight="35.0" prefWidth="268.0" text="textModoJuego">
@@ -59,22 +148,16 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <ImageView fx:id="circulo" fitHeight="32.0" fitWidth="35.0" layoutX="78.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="circulo" fitHeight="65.0" fitWidth="65.0" layoutX="108.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/circulo.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="equis" fitHeight="32.0" fitWidth="36.0" layoutX="33.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="equis" fitHeight="65.0" fitWidth="65.0" layoutX="33.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/equis.png" />
                </image>
             </ImageView>
-            <Rectangle fx:id="k00" arcHeight="5.0" arcWidth="5.0" fill="#09b22e" height="100.0" layoutX="54.0" layoutY="137.0" onMouseClicked="#click00" onMouseEntered="#k00In" onMouseExited="#k00Exit" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="100.0" />
-            <Rectangle fx:id="k01" arcHeight="5.0" arcWidth="5.0" fill="#09b22e" height="100.0" layoutX="94.0" layoutY="22.0" onMouseClicked="#click01" onMouseEntered="#k01In" onMouseExited="#k01Exit" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="100.0" />
-            <Rectangle fx:id="k02" arcHeight="5.0" arcWidth="5.0" fill="#09b22e" height="100.0" layoutX="527.0" layoutY="12.0" onMouseClicked="#click02" onMouseEntered="#k02In" onMouseExited="#k02Exit" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="100.0" />
-            <Rectangle fx:id="k11" arcHeight="5.0" arcWidth="5.0" fill="#09b22e" height="100.0" layoutX="220.0" layoutY="9.0" onMouseClicked="#click11" onMouseEntered="#k11In" onMouseExited="#k11Exit" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="100.0" />
-            <Rectangle fx:id="k10" arcHeight="5.0" arcWidth="5.0" fill="#09b22e" height="100.0" layoutX="320.0" layoutY="14.0" onMouseClicked="#click10" onMouseEntered="#k10In" onMouseExited="#k10Exit" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="100.0" />
-            <Rectangle fx:id="k12" arcHeight="5.0" arcWidth="5.0" fill="#09b22e" height="100.0" layoutX="553.0" layoutY="128.0" onMouseClicked="#click12" onMouseEntered="#k12In" onMouseExited="#k12Exit" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="100.0" />
          </children>
       </AnchorPane>
    </center>

@@ -19,11 +19,16 @@ public class Juego3raya {
         ocAzul = new boolean[3][3];
     }
 
-    public static void meteFicha(int fila, int columna,String color){
-
-        if(color.equals("rojo")) ocRojos[fila][columna]=true;
-        if(color.equals("azul")) ocAzul[fila][columna]=true;
-
+    public static boolean marcar(int fila, int columna,String color){
+        if (!ocupados[fila][columna]){
+            ocupados[fila][columna]=true;
+            if(color.equals("rojo")) ocRojos[fila][columna]=true;
+            if(color.equals("azul")) ocAzul[fila][columna]=true;
+            return true;
+        } else{
+            System.out.println("La casilla ya está marcada!");
+            return false;
+        }
     }
     public static void edit(int fila, int columna){
         ocupados[fila][columna] = true;
@@ -42,7 +47,7 @@ public class Juego3raya {
     }
 
 
-    public static boolean hay4raya(){
+    public static boolean hay3raya(){
         return false;
     }
 

@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import main.juegos.raya3.Juego3raya;
 import main.juegos.raya4.Juego4raya;
 
 import java.io.IOException;
@@ -20,7 +21,8 @@ public class Main extends Application {
     private static Scene s4;
     private static Scene s3;
 
-    private static Juego4raya juego4raya = Juego4raya.getJuego4raya();;
+    private static Juego4raya juego4raya = Juego4raya.getJuego4raya();
+    private static Juego3raya juego3raya = Juego3raya.getJuego3raya();
 
     //private Menu menu;
 
@@ -52,6 +54,8 @@ public class Main extends Application {
     }
 
     public static void carga3raya(){
+        stage.setTitle("3 en raya");
+        juego3raya.cargarJuego();
         stage.setScene(s3);
         stage.setResizable(false);
     }
