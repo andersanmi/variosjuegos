@@ -1,5 +1,7 @@
 package main.juegos.raya3;
 
+import java.util.ArrayList;
+
 public class Juego3raya {
     private static boolean[][] ocupados,ocRojos,ocAzul;
 
@@ -17,6 +19,7 @@ public class Juego3raya {
         ocupados = new boolean[3][3];
         ocRojos = new boolean[3][3];
         ocAzul = new boolean[3][3];
+
     }
 
     public static boolean marcar(int fila, int columna,String color){
@@ -51,13 +54,28 @@ public class Juego3raya {
         return false;
     }
 
-    public int iaFacil(){
-        IAFacil ia = new IAFacil();
-        return ia.selCollum();
+    public int[] iaFacil(){
+        IAFacil ia = new IAFacil(ocupados);
+        int[] pos = ia.setPos();
+        ocupados[pos[0]][pos[1]]=true;
+        return pos;
     }
     public int iaDificil(){
         IADificil ia = new IADificil(ocupados,ocRojos,ocAzul);
         return ia.selCollum();
+    }
+
+    public boolean estaLleno(){
+        boolean lleno = true;
+        for (int fila=0; fila<3; fila++){
+            for (int columna=0; columna<3; columna++){
+                if (!ocupados[fila][columna]){
+                    lleno = false;
+                    break;
+                }
+            }
+        }
+        return lleno;
     }
 
 

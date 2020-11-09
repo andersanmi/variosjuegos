@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.paint.Color;
 import main.Main;
+import main.juegos.raya3.Juego3raya;
 import main.juegos.raya4.Juego4raya;
 
 import java.net.URL;
@@ -75,6 +76,7 @@ public class T4raya implements Initializable {
                 circulo.setFill(Color.WHITESMOKE);
             }
         }
+        jugadorActual = "azul";
         Juego4raya.getJuego4raya().reiniciarJuego();
     }
     private void delay(){
@@ -89,24 +91,26 @@ public class T4raya implements Initializable {
         else if(jugadorActual=="rojo"){ jugadorActual="azul"; }
     }
     public void cambiarTurno(){
-        if(modoDeJuego=="2 jugadores"){
-            cambiaJugador();
-        }
-        if(modoDeJuego=="IA facil"){
-            delay();
-            cambiaJugador();
-            int pos = Juego4raya.getJuego4raya().iaFacil();
-            int fila = Juego4raya.getJuego4raya().meteFicha(pos,jugadorActual);
-            if(fila!=-1) { coloreaCirculo(fila, pos); }
-            cambiaJugador();
-        }
-        if(modoDeJuego=="IA dificil"){
-            delay();
-            cambiaJugador();
-            int pos = Juego4raya.getJuego4raya().iaDificil();
-            int fila = Juego4raya.getJuego4raya().meteFicha(pos,jugadorActual);
-            if(fila!=-1) { coloreaCirculo(fila, pos); }
-            cambiaJugador();
+        if (!Juego4raya.getJuego4raya().estaLleno()){
+            if(modoDeJuego=="2 jugadores"){
+                cambiaJugador();
+            }
+            if(modoDeJuego=="IA facil"){
+                delay();
+                cambiaJugador();
+                int pos = Juego4raya.getJuego4raya().iaFacil();
+                int fila = Juego4raya.getJuego4raya().meteFicha(pos,jugadorActual);
+                if(fila!=-1) { coloreaCirculo(fila, pos); }
+                cambiaJugador();
+            }
+            if(modoDeJuego=="IA dificil"){
+                delay();
+                cambiaJugador();
+                int pos = Juego4raya.getJuego4raya().iaDificil();
+                int fila = Juego4raya.getJuego4raya().meteFicha(pos,jugadorActual);
+                if(fila!=-1) { coloreaCirculo(fila, pos); }
+                cambiaJugador();
+            }
         }
     }
 
@@ -124,15 +128,15 @@ public class T4raya implements Initializable {
         Juego4raya.getJuego4raya().printMatrix();
     }
 
-    public void clickB0(ActionEvent actionEvent) {accionBoton(0); }
-    public void clickB1(ActionEvent actionEvent) {accionBoton(1);}
-    public void clickB2(ActionEvent actionEvent) {accionBoton(2);}
-    public void clickB3(ActionEvent actionEvent) {accionBoton(3);}
-    public void clickB4(ActionEvent actionEvent) {accionBoton(4);}
-    public void clickB5(ActionEvent actionEvent) {accionBoton(5);}
-    public void clickB6(ActionEvent actionEvent) {accionBoton(6);}
-    public void clickB7(ActionEvent actionEvent) {accionBoton(7);}
-    public void clickB8(ActionEvent actionEvent) {accionBoton(8);}
+    public void clickB0(ActionEvent actionEvent) {accionBoton(0);Exited(0); Entered(0);}
+    public void clickB1(ActionEvent actionEvent) {accionBoton(1);Exited(1); Entered(1);}
+    public void clickB2(ActionEvent actionEvent) {accionBoton(2);Exited(2); Entered(2);}
+    public void clickB3(ActionEvent actionEvent) {accionBoton(3);Exited(3); Entered(3);}
+    public void clickB4(ActionEvent actionEvent) {accionBoton(4);Exited(4); Entered(4);}
+    public void clickB5(ActionEvent actionEvent) {accionBoton(5);Exited(5); Entered(5);}
+    public void clickB6(ActionEvent actionEvent) {accionBoton(6);Exited(6); Entered(6);}
+    public void clickB7(ActionEvent actionEvent) {accionBoton(7);Exited(7); Entered(7);}
+    public void clickB8(ActionEvent actionEvent) {accionBoton(8);Exited(8); Entered(8);}
 
     //para animacion de flechas
     public void b0In(MouseEvent mouseEvent)   { Entered(0); }
@@ -160,15 +164,16 @@ public class T4raya implements Initializable {
 
 
     public void Entered(int bId){
-        Button boton = listaBotones.get(bId);
-        if (jugadorActual == "rojo") {
-            flechaRoja.setVisible(true);
-            boton.setGraphic(flechaRoja);
-        }else{
-            flechaAzul.setVisible(true);
-            boton.setGraphic(flechaAzul);
+        if (!Juego4raya.getJuego4raya().estaLleno()){
+            Button boton = listaBotones.get(bId);
+            if (jugadorActual == "rojo") {
+                flechaRoja.setVisible(true);
+                boton.setGraphic(flechaRoja);
+            }else{
+                flechaAzul.setVisible(true);
+                boton.setGraphic(flechaAzul);
+            }
         }
-        //actualButton=botoia;
     }
 
     public void Exited(int bId){

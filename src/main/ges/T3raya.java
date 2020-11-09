@@ -116,11 +116,17 @@ public class T3raya implements Initializable {
     }
 
     public void resetearJuego(){
-        for (ArrayList<Button> fila:matrizBotones){
-            for (Button b:fila){
-                b.setGraphic(imagenVacia);
+        for (ArrayList<ImageView> fila:matrizCirculos){
+            for (ImageView img:fila){
+                img.setVisible(false);
             }
         }
+        for (ArrayList<ImageView> fila:matrizEquises){
+            for (ImageView img:fila){
+                img.setVisible(false);
+            }
+        }
+        jugadorActual = "azul";
         Juego3raya.getJuego3raya().reiniciarJuego();
     }
 
@@ -137,24 +143,25 @@ public class T3raya implements Initializable {
         else if(jugadorActual.equals("rojo")){ jugadorActual="azul"; }
     }
     public void cambiarTurno(){
-        if(modoDeJuego.equals("2 jugadores")){
-            cambiaJugador();
-        }
-        if(modoDeJuego.equals("IA facil")){
-            delay();
-            cambiaJugador();
-            //int pos = Juego3raya.getJuego3raya().iaFacil();
-            //int fila = Juego3raya.getJuego3raya().meteFicha(pos,jugadorActual);
-            //if(fila!=-1) { coloreaCirculo(fila, pos); }
-            cambiaJugador();
-        }
-        if(modoDeJuego.equals("IA dificil")){
-            delay();
-            cambiaJugador();
-            //int pos = Juego3raya.getJuego3raya().iaDificil();
-            //int fila = Juego3raya.getJuego3raya().meteFicha(pos,jugadorActual);
-            //if(fila!=-1) { coloreaCirculo(fila, pos); }
-            cambiaJugador();
+        if (!Juego3raya.getJuego3raya().estaLleno()){
+            if(modoDeJuego.equals("2 jugadores")){
+                cambiaJugador();
+            }
+            if(modoDeJuego.equals("IA facil")){
+                delay();
+                cambiaJugador();
+                int[] pos = Juego3raya.getJuego3raya().iaFacil();
+                marcarCuadrado(pos[0],pos[1]);
+                cambiaJugador();
+            }
+            if(modoDeJuego.equals("IA dificil")){
+                delay();
+                cambiaJugador();
+                //int pos = Juego3raya.getJuego3raya().iaDificil();
+                //int fila = Juego3raya.getJuego3raya().meteFicha(pos,jugadorActual);
+                //if(fila!=-1) { coloreaCirculo(fila, pos); }
+                cambiaJugador();
+            }
         }
     }
     public void accionBoton(int fila, int columna){
@@ -172,7 +179,7 @@ public class T3raya implements Initializable {
         if(jugadorActual.equals("azul")) equis.setVisible(true);
     }
 
-    public void click00(ActionEvent actionEvent) {accionBoton(0, 0); }
+    public void click00(ActionEvent actionEvent) {accionBoton(0, 0);}
     public void click01(ActionEvent actionEvent) {accionBoton(0, 1);}
     public void click02(ActionEvent actionEvent) {accionBoton(0, 2);}
     public void click10(ActionEvent actionEvent) {accionBoton(1, 0);}
@@ -203,15 +210,16 @@ public class T3raya implements Initializable {
     public void b22Exit(MouseEvent mouseEvent) { Exited(2, 2); }
 
     public void Entered(int fila, int columna){
-        Button b = matrizBotones.get(fila).get(columna);
-        if (jugadorActual.equals("rojo")) {
-            circulo.setVisible(true);
-            b.setGraphic(circulo);
-        }else{
-            equis.setVisible(true);
-            b.setGraphic(equis);
+        if (!Juego3raya.getJuego3raya().estaLleno()){
+            Button b = matrizBotones.get(fila).get(columna);
+            if (jugadorActual.equals("rojo")) {
+                circulo.setVisible(true);
+                b.setGraphic(circulo);
+            }else{
+                equis.setVisible(true);
+                b.setGraphic(equis);
+            }
         }
-
     }
 
     public void Exited(int fila, int columna){
@@ -219,14 +227,13 @@ public class T3raya implements Initializable {
         b.setGraphic(imagenVacia);
     }
 
-
-
     //menu
     private void cambioModoDeJuego(String modo){
         modoDeJuego=modo;
         textModoJuego.setText(modo);
         resetearJuego();
     }
+
     public void click2jugadores() { cambioModoDeJuego("2 jugadores"); }
     public void clickIAfacil() {cambioModoDeJuego("IA facil"); }
     public void clickIAdificil() {cambioModoDeJuego("IA dificil");}
