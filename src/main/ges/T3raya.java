@@ -240,6 +240,7 @@ public class T3raya implements Initializable {
     public void clickReiniciar() {
         resetearJuego();
     }
+    public void clickMenu() { Main.cargaMenu(); }
 
 
 }

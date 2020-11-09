@@ -193,9 +193,8 @@ public class T4raya implements Initializable {
     public void click2jugadores() { cambioModoDeJuego("2 jugadores"); }
     public void clickIAfacil() {cambioModoDeJuego("IA facil"); }
     public void clickIAdificil() {cambioModoDeJuego("IA dificil");}
-    public void clickReiniciar() {
-        resetearJuego();
-    }
+    public void clickReiniciar() { resetearJuego(); }
+    public void clickMenu() { Main.cargaMenu(); }
 
 
 

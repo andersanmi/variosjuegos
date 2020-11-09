@@ -176,6 +176,11 @@
    <top>
       <MenuBar prefHeight="33.0" prefWidth="593.0" BorderPane.alignment="CENTER">
          <menus>
+            <Menu mnemonicParsing="false" text="Menu">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#clickMenu" text="Menu" />
+               </items>
+            </Menu>
             <Menu mnemonicParsing="false" text="Modo de juego">
                <items>
                   <RadioMenuItem fx:id="menu2jugadores" mnemonicParsing="false" onAction="#click2jugadores" text="2 Jugadores">
