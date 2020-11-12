@@ -18,8 +18,6 @@ import java.util.concurrent.TimeUnit;
 
 public class T3raya implements Initializable {
     //pruebas
-    public Button bok;
-    public Button cReturn;
 
     public Button b00,b01,b02,b10,b11,b12,b20,b21,b22;
     public ArrayList<ArrayList<Button>> matrizBotones = new ArrayList<>();
@@ -45,13 +43,6 @@ public class T3raya implements Initializable {
         cargarJuego();
     }
 
-    public void cok(ActionEvent actionEvent) {
-        System.out.println("ok4");
-    }
-
-    public void cReturn(ActionEvent actionEvent) {
-        Main.cargaMenu();
-    }
 
     public void cargarJuego(){
         //estructura datos
@@ -240,7 +231,10 @@ public class T3raya implements Initializable {
     public void clickReiniciar() {
         resetearJuego();
     }
-    public void clickMenu() { Main.cargaMenu(); }
+    public void clickMenu() {
+        resetearJuego();
+        Main.cargaMenu();
+    }
 
 
 }
