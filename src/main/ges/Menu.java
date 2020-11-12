@@ -23,6 +23,9 @@ public class Menu implements Initializable {
         b3raya.setGraphic(juego3raya);
         b4raya.setGraphic(juego4raya);
     }
+    public void setUsername(String name){
+        usuario.setText(name);
+    }
 
     public void jugar3raya(ActionEvent actionEvent) { Main.carga3raya(); }
     public void jugar4raya(ActionEvent actionEvent) { Main.carga4raya(); }

@@ -167,7 +167,6 @@
                      </toggleGroup>
                   </RadioMenuItem>
                   <RadioMenuItem fx:id="menuIAfacil" mnemonicParsing="false" onAction="#clickIAfacil" text="IA facil" toggleGroup="$toggleGroup" />
-                  <RadioMenuItem fx:id="menuIAdificil" mnemonicParsing="false" onAction="#clickIAdificil" text="IA Dificil" toggleGroup="$toggleGroup" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Reiniciar">

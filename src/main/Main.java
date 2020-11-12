@@ -17,6 +17,7 @@ public class Main extends Application {
     private static Parent t3raya;
     private static Parent t4raya;
     private static Parent usuario;
+    private static String username;
 
     private static Stage stage;
     private static Scene sMenu;
@@ -41,7 +42,6 @@ public class Main extends Application {
     }
 
     private void cargaPantallas() throws IOException {
-        System.out.println("hola");
         usuario = FXMLLoader.load(getClass().getResource("/view/usuario.fxml"));
         menu = FXMLLoader.load(getClass().getResource("/view/menu.fxml"));
         t3raya = FXMLLoader.load(getClass().getResource("/view/t3raya.fxml"));
