@@ -60,9 +60,9 @@ public class Juego3raya {
         ocupados[pos[0]][pos[1]]=true;
         return pos;
     }
-    public int iaDificil(){
-        IADificil ia = new IADificil(ocupados,ocRojos,ocAzul);
-        return ia.selCollum();
+
+    public boolean posOcupada(int fila, int columna){
+        return ocupados[fila][columna];
     }
 
     public boolean estaLleno(){
