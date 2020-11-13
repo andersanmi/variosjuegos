@@ -27,6 +27,7 @@ public class Main extends Application {
     private static Juego4raya juego4raya = Juego4raya.getJuego4raya();
     private static Juego3raya juego3raya = Juego3raya.getJuego3raya();
 
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         stage = primaryStage;
@@ -81,4 +82,6 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+
 }
