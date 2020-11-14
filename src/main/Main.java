@@ -13,8 +13,7 @@ import main.juegos.raya3.Juego3raya;
 import main.juegos.raya4.Juego4raya;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
+
 
 public class Main extends Application {
 
@@ -27,7 +26,6 @@ public class Main extends Application {
     private Parent pT3raya;
     private Parent pT4raya;
     private Parent pUsuario;
-    private String username;
 
     private Stage stage;
 
@@ -38,18 +36,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        /*stage = primaryStage;
-        cargaPantallas();
-        stage.setTitle("Menu  Variosjuegos");
-        //si no definimos anchura ni altura se pondran los valores del .fxml
-        //stage.setScene(new Scene(menu, anchura, altura));
-        cargaUsuario();
 
-        //stage.setResizable(true);
-        stage.show();*/
         cargaPantallas();
         stage = primaryStage;
-        stage.setTitle("Menu usuario");
+        stage.setTitle("VariosJuegos");
         stage.setScene(new Scene(pUsuario));
         stage.show();
 
@@ -62,33 +52,25 @@ public class Main extends Application {
         usuario.setMain(this);
     }
 
-    public void cargaUsuario(){
-        stage.setScene(new Scene(pUsuario));
-        stage.setResizable(false);
-    }
-
     public void cargaMenu(String username) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/menu.fxml"));
         pMenu = (Parent) loader.load();
         menu = loader.getController();
-        /*Properties prop = new Properties();
-        InputStream is = Main.class.getClassLoader().getResourceAsStream("setup.properties");
-        prop.load(is);
-        menu.setUsername(prop.getProperty("username"));*/
-
-        menu.setUsername(username);
         menu.setMain(this);
+        menu.setUsername(username);
 
         stage = new Stage();
         stage.setScene(new Scene(pMenu));
+        stage.setTitle("VariosJuegos");
         stage.show();
     }
 
-    public void carga3raya() throws IOException {
+    public void carga3raya(String name) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/t3raya.fxml"));
         pT3raya = (Parent) loader.load();
         t3raya = loader.getController();
-        t4raya.setMain(this);
+        t3raya.setMain(this);
+        t3raya.setUsername(name);
 
         juego3raya.cargarJuego();
         stage = new Stage();
@@ -97,11 +79,13 @@ public class Main extends Application {
         stage.show();
     }
 
-    public void carga4raya() throws IOException {
+    public void carga4raya(String name) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/t4raya.fxml"));
         pT4raya = (Parent) loader.load();
         t4raya = loader.getController();
         t4raya.setMain(this);
+        t4raya.setUsername(name);
+
         juego4raya.cargarJuego();
         stage = new Stage();
         stage.setScene(new Scene(pT4raya));
@@ -109,7 +93,6 @@ public class Main extends Application {
         stage.show();
 
     }
-
 
     public static void main(String[] args) {
         launch(args);
