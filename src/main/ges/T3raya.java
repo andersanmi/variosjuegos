@@ -8,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import main.Main;
 import main.juegos.raya3.Juego3raya;
 
@@ -19,6 +21,7 @@ import java.util.concurrent.TimeUnit;
 
 public class T3raya implements Initializable {
     //pruebas
+    public BorderPane bp;
 
     public Button b00,b01,b02,b10,b11,b12,b20,b21,b22;
     public ArrayList<ArrayList<Button>> matrizBotones = new ArrayList<>();
@@ -37,6 +40,8 @@ public class T3raya implements Initializable {
 
     private Main main;
 
+    private String username = null;
+
 
 
     @Override
@@ -47,6 +52,8 @@ public class T3raya implements Initializable {
     public void setMain(Main main) {
         this.main = main;
     }
+
+    public void setUsername(String name){ username = name; }
 
     public void cargarJuego(){
         //estructura datos
@@ -149,14 +156,6 @@ public class T3raya implements Initializable {
                 marcarCuadrado(pos[0],pos[1]);
                 cambiaJugador();
             }
-            if(modoDeJuego.equals("IA dificil")){
-                delay();
-                cambiaJugador();
-                //int pos = Juego3raya.getJuego3raya().iaDificil();
-                //int fila = Juego3raya.getJuego3raya().meteFicha(pos,jugadorActual);
-                //if(fila!=-1) { coloreaCirculo(fila, pos); }
-                cambiaJugador();
-            }
         }
     }
     public void accionBoton(int fila, int columna){
@@ -237,7 +236,9 @@ public class T3raya implements Initializable {
     }
     public void clickMenu() throws IOException {
         resetearJuego();
-        //main.cargaMenu();
+        main.cargaMenu(username);
+        Stage stage = (Stage) bp.getScene().getWindow();
+        stage.close();
     }
 
 

@@ -20,15 +20,10 @@ public class Usuario {
     private Main main;
 
     public void onClick(ActionEvent actionEvent) throws IOException {
-        Properties prop = new Properties();
-        InputStream is = Usuario.class.getClassLoader().getResourceAsStream("setup.properties");
-        prop.load(is);
-        prop.setProperty("username", usuario.getText());
         main = new Main();
         main.cargaMenu(usuario.getText());
         Stage stage = (Stage) ap.getScene().getWindow();
         stage.close();
-
     }
 
     public void setMain(Main main) {

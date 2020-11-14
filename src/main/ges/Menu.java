@@ -5,6 +5,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import main.Main;
 
 import javafx.scene.image.ImageView;
@@ -15,6 +18,7 @@ import java.util.ResourceBundle;
 
 public class Menu implements Initializable {
 
+    public BorderPane bp;
     public Label usuario;
     public ImageView juego3raya, juego4raya;
     public Button b4raya;
@@ -27,7 +31,7 @@ public class Menu implements Initializable {
     }
 
     private Main main;
-    private String username;
+    private String username = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -39,6 +43,7 @@ public class Menu implements Initializable {
 
     public void setUsername(String name){
         usuario.setText(name + "!");
+        username = name;
     }
 
     public void setMain(Main main) {
@@ -46,8 +51,16 @@ public class Menu implements Initializable {
     }
 
 
-    public void jugar3raya(ActionEvent actionEvent) throws IOException { main.carga3raya(); }
-    public void jugar4raya(ActionEvent actionEvent) throws IOException { main.carga4raya(); }
+    public void jugar3raya(ActionEvent actionEvent) throws IOException {
+        main.carga3raya(username);
+        Stage stage = (Stage) bp.getScene().getWindow();
+        stage.close();
+        }
+    public void jugar4raya(ActionEvent actionEvent) throws IOException {
+        main.carga4raya(username);
+        Stage stage = (Stage) bp.getScene().getWindow();
+        stage.close();
+    }
     
 
 }

@@ -6,8 +6,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import main.Main;
 import main.juegos.raya3.Juego3raya;
 import main.juegos.raya4.Juego4raya;
@@ -20,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 
 public class T4raya implements Initializable {
     //pruebas
-
+    public BorderPane bp;
 
     public Button b0,b1,b2,b3,b4,b5,b6,b7,b8;
     public ArrayList<Button> listaBotones = new ArrayList<>();
@@ -42,6 +45,7 @@ public class T4raya implements Initializable {
 
     private Main main;
 
+    private String username = null;
 
 
     @Override
@@ -49,9 +53,9 @@ public class T4raya implements Initializable {
         cargarJuego();
     }
 
-    public void setMain(Main main) {
-        this.main = main;
-    }
+    public void setMain(Main main) { this.main = main; }
+
+    public void setUsername(String name){ username = name; }
 
     public void cargarJuego(){
         //estructura datos
@@ -190,7 +194,9 @@ public class T4raya implements Initializable {
     public void clickReiniciar() { resetearJuego(); }
     public void clickMenu() throws IOException {
         resetearJuego();
-        //main.cargaMenu();
+        main.cargaMenu(username);
+        Stage stage = (Stage) bp.getScene().getWindow();
+        stage.close();
     }
 
 
