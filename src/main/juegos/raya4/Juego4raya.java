@@ -137,14 +137,61 @@ public class Juego4raya {
     }
 
     private static Boolean MirarDiagPos(boolean[][] matriz){
+        //mira las diagonales ascendentes
         for (int columna = 8; columna > 0; columna--){
             int fila=5;
             int contPos=0;
             int valCol = columna;
             int valFil = fila;
-            while(inIndex(valCol,valFil)){
-                System.out.println(valCol+"  "+valFil);
-                System.out.println(matriz[valCol-1][valFil-1]);
+            while(inIndex(valFil,valCol)){
+                //System.out.println(valFil+"  "+valCol);
+                //System.out.println("contPos"+contPos);
+                if(matriz[valFil][valCol]){
+                    contPos++;
+                    if(contPos==4) return true;
+                }
+                else contPos=0;
+                valCol++;
+                valFil--;
+            }
+        }
+
+        for (int fila = 5; fila > 0; fila--){
+            int columna=0;
+            int contPos=0;
+            int valCol = columna;
+            int valFil = fila;
+            while(inIndex(valFil,valCol)){
+                //System.out.println(valFil+"  "+valCol);
+                //System.out.println("contPos"+contPos);
+                if(matriz[valFil][valCol]){
+                    contPos++;
+                    if(contPos==4) return true;
+                }
+                else contPos=0;
+                valCol++;
+                valFil--;
+            }
+        }
+
+        return false;
+    }
+    private static boolean inIndex(int fila,int columna){
+        if(columna>8 || columna<0) return false;
+        if(fila>5 || fila<0) return false;
+        return true;
+    }
+
+    private static Boolean MirarDiagNeg(boolean[][] matriz){
+        //mira las diagonales descendentes
+        for (int columna = 8; columna > 0; columna--){
+            int fila=0;
+            int contPos=0;
+            int valCol = columna;
+            int valFil = fila;
+            while(inIndex(valFil,valCol)){
+                System.out.println(valFil+"  "+valCol);
+                //System.out.println("contPos"+contPos);
                 if(matriz[valFil][valCol]){
                     contPos++;
                     if(contPos==4) return true;
@@ -154,29 +201,36 @@ public class Juego4raya {
                 valFil++;
             }
         }
+
+        for (int fila = 0; fila < 5; fila++){
+            int columna=0;
+            int contPos=0;
+            int valCol = columna;
+            int valFil = fila;
+            while(inIndex(valFil,valCol)){
+                //System.out.println(valFil+"  "+valCol);
+                //System.out.println("contPos"+contPos);
+                if(matriz[valFil][valCol]){
+                    contPos++;
+                    if(contPos==4) return true;
+                }
+                else contPos=0;
+                valCol++;
+                valFil++;
+            }
+        }
+
+
         return false;
     }
-    private static boolean inIndex(int columna,int fila){
-        if(columna>8 || columna<0) return false;
-        if(fila>6 || fila<0) return false;
-        return true;
-    }
-    /*
-    private static ArrayList<Boolean> getDiagneg(){
-
-    }
-    private static boolean get4Trues(){
-
-    }
-
-    */
     public static boolean hayRaya4(String color){
         boolean[][] m = new boolean[1][1];
         if(color=="rojo") m=ocRojos;
         if(color=="azul") m=ocAzul;
-        //if(mirarFilas(m)) return true;
-        //if(mirarColumnas(m)) return true;
-        //if(MirarDiagPos(m)) return true;
+        if(mirarFilas(m)) return true;
+        if(mirarColumnas(m)) return true;
+        if(MirarDiagPos(m)) return true;
+        if(MirarDiagNeg(m)) return true;
         return false;
     }
 }
