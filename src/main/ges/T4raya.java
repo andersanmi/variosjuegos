@@ -22,7 +22,6 @@ import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
 public class T4raya implements Initializable {
-    //pruebas
     public BorderPane bp;
 
     public Button b0,b1,b2,b3,b4,b5,b6,b7,b8;
@@ -74,12 +73,20 @@ public class T4raya implements Initializable {
                 circulo.setFill(Color.WHITESMOKE);
             }
         }
+        textModoJuego.setText(modoDeJuego);
         jugadorActual = "azul";
         Juego4raya.getJuego4raya().reiniciarJuego();
     }
     private void delay(){
         try { TimeUnit.MILLISECONDS.sleep(200); }
         catch (InterruptedException e) { e.printStackTrace(); }
+    }
+    private void finPartida(String ganador){
+        //Mira si la partida ha acabado y hace lo que tenga que hacer para finalizarla
+        //acaba el juego
+        if(ganador=="empate") textModoJuego.setText("Empate");
+        else textModoJuego.setText("Ha ganado el jugador "+ganador);
+        Juego4raya.getJuego4raya().partidaSigue=false;
     }
 
     private void cambiaJugador(){
@@ -118,12 +125,16 @@ public class T4raya implements Initializable {
         if(jugadorActual=="azul") cir.setFill(Color.BLUE);
     }
     public void accionBoton(int numeroBoton){
-        int fila = Juego4raya.getJuego4raya().meteFicha(numeroBoton,jugadorActual);
-        if(fila!=-1){//es -1 cuando la fila esta completa
-            coloreaCirculo(fila,numeroBoton);
-            cambiarTurno();
+        if(Juego4raya.getJuego4raya().partidaSigue){
+            Juego4raya juego = Juego4raya.getJuego4raya();
+            int fila = juego.meteFicha(numeroBoton,jugadorActual);
+            if(fila!=-1){//es -1 cuando la fila esta completa
+                coloreaCirculo(fila,numeroBoton);
+                if(juego.hayRaya4(jugadorActual)) finPartida(jugadorActual);
+                if(juego.todasLlenas()) finPartida("empate");
+                cambiarTurno();
+            }
         }
-        Juego4raya.getJuego4raya().printMatrix();
     }
 
     public void clickB0(ActionEvent actionEvent) {accionBoton(0);Exited(0); Entered(0);}

@@ -44,7 +44,7 @@
                   <RowConstraints maxHeight="191.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button fx:id="b8" mnemonicParsing="false" onAction="#clickB8" onMouseEntered="#b8In" prefHeight="125.0" prefWidth="63.0" GridPane.columnIndex="8" GridPane.halignment="CENTER">
+                  <Button fx:id="b8" mnemonicParsing="false" onAction="#clickB8" onMouseEntered="#b8In" onMouseExited="#b8Exit" prefHeight="125.0" prefWidth="63.0" GridPane.columnIndex="8" GridPane.halignment="CENTER">
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
@@ -145,7 +145,7 @@
                   <Circle fx:id="k65" fill="#f5f5f5" radius="30.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
                </children>
             </GridPane>
-            <Label fx:id="textModoJuego" alignment="CENTER" layoutX="236.0" layoutY="23.0" prefHeight="35.0" prefWidth="248.0" text="textModoJuego">
+            <Label fx:id="textModoJuego" alignment="CENTER" layoutX="160.0" layoutY="23.0" prefHeight="35.0" prefWidth="400.0" text="textModoJuego">
                <font>
                   <Font size="24.0" />
                </font>

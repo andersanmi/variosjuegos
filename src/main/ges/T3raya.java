@@ -12,6 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import main.Main;
 import main.juegos.raya3.Juego3raya;
+import main.juegos.raya4.Juego4raya;
 
 import java.io.IOException;
 import java.net.URL;
@@ -38,6 +39,7 @@ public class T3raya implements Initializable {
     public String jugadorActual = null;
     public String modoDeJuego ="2 jugadores";
 
+
     private Main main;
 
     private String username = null;
@@ -63,7 +65,14 @@ public class T3raya implements Initializable {
         circulo.setVisible(false);
         //cambios interfaz
         textModoJuego.setText(modoDeJuego);
+    }
+    private void finPartida(String ganador){
+        //Mira si la partida ha acabado y hace lo que tenga que hacer para finalizarla
+        //acaba el juego
+        if(ganador=="empate") textModoJuego.setText("Empate");
+        else textModoJuego.setText("Ha ganado el jugador "+ganador);
 
+        Juego3raya.getJuego3raya().partidaSigue=false;
     }
 
     private void cargaMatrices() {
@@ -118,6 +127,7 @@ public class T3raya implements Initializable {
     }
 
     public void resetearJuego(){
+        textModoJuego.setText(modoDeJuego);
         for (ArrayList<ImageView> fila:matrizCirculos){
             for (ImageView img:fila){
                 img.setVisible(false);
@@ -159,11 +169,16 @@ public class T3raya implements Initializable {
         }
     }
     public void accionBoton(int fila, int columna){
-        if(Juego3raya.getJuego3raya().marcar(fila, columna ,jugadorActual)){
-            marcarCuadrado(fila, columna);
-            cambiarTurno();
+        if(Juego3raya.getJuego3raya().partidaSigue){
+            Juego3raya juego = Juego3raya.getJuego3raya();
+            if(juego.marcar(fila, columna ,jugadorActual)){
+                marcarCuadrado(fila, columna);
+                if(juego.hayRaya3(jugadorActual)) finPartida(jugadorActual);
+                if(juego.todasLlenas()) finPartida("empate");
+                cambiarTurno();
+            }
+            //Juego3raya.getJuego3raya().printMatrix();
         }
-        Juego3raya.getJuego3raya().printMatrix();
     }
 
     public void marcarCuadrado(int fila, int columna){
@@ -230,7 +245,6 @@ public class T3raya implements Initializable {
 
     public void click2jugadores() { cambioModoDeJuego("2 jugadores"); }
     public void clickIAfacil() {cambioModoDeJuego("IA facil"); }
-    public void clickIAdificil() {cambioModoDeJuego("IA dificil");}
     public void clickReiniciar() {
         resetearJuego();
     }

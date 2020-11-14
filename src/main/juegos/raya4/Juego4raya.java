@@ -9,20 +9,25 @@ public class Juego4raya {
     public static Juego4raya getJuego4raya(){
         return miJuego4raya;
     }
+    public static boolean partidaSigue = true;
 
     public void cargarJuego(){
         ocupados = new boolean[6][9];
         ocRojos = new boolean[6][9];
         ocAzul = new boolean[6][9];
+        partidaSigue=true;
     }
     public void reiniciarJuego(){
         ocupados = new boolean[6][9];
         ocRojos = new boolean[6][9];
         ocAzul = new boolean[6][9];
+        partidaSigue=true;
     }
 
     public static int meteFicha(int colum,String color){
         //color: azul, rojo
+        //num positivo columna de la ficha
+        //-1 si no encuentra la ficha
 
         int fila = -1;
         if(!ocupados[0][colum]){//hay hueco
@@ -35,10 +40,6 @@ public class Juego4raya {
             }
             if(color=="rojo") ocRojos[fila][colum]=true;
             if(color=="azul") ocAzul[fila][colum]=true;
-            if(hayRaya4(color)){
-                System.out.println(color+" ha ganado");
-                return -1;
-            }
         }
         else System.out.println("error columna llena");
         return fila;
@@ -136,7 +137,7 @@ public class Juego4raya {
         return false;
     }
 
-    private static Boolean MirarDiagPos(boolean[][] matriz){
+    private static Boolean mirarDiagPos(boolean[][] matriz){
         //mira las diagonales ascendentes
         for (int columna = 8; columna > 0; columna--){
             int fila=5;
@@ -182,7 +183,7 @@ public class Juego4raya {
         return true;
     }
 
-    private static Boolean MirarDiagNeg(boolean[][] matriz){
+    private static Boolean mirarDiagNeg(boolean[][] matriz){
         //mira las diagonales descendentes
         for (int columna = 8; columna > 0; columna--){
             int fila=0;
@@ -223,14 +224,24 @@ public class Juego4raya {
 
         return false;
     }
+
+    public static boolean todasLlenas(){
+        for (boolean [] y:ocupados) {
+            for (boolean x : y) {
+                if (!x) return false;
+            }
+        }
+        return true;
+    }
+
     public static boolean hayRaya4(String color){
         boolean[][] m = new boolean[1][1];
         if(color=="rojo") m=ocRojos;
         if(color=="azul") m=ocAzul;
         if(mirarFilas(m)) return true;
         if(mirarColumnas(m)) return true;
-        if(MirarDiagPos(m)) return true;
-        if(MirarDiagNeg(m)) return true;
+        if(mirarDiagPos(m)) return true;
+        if(mirarDiagNeg(m)) return true;
         return false;
     }
 }

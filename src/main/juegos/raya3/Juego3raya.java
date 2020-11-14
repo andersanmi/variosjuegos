@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class Juego3raya {
     private static boolean[][] ocupados,ocRojos,ocAzul;
+    public static boolean partidaSigue = true;
+
 
     private static final Juego3raya miJuego3raya = new Juego3raya();
     public static Juego3raya getJuego3raya(){
@@ -14,12 +16,13 @@ public class Juego3raya {
         ocupados = new boolean[3][3];
         ocRojos = new boolean[3][3];
         ocAzul = new boolean[3][3];
+        partidaSigue=true;
     }
     public void reiniciarJuego(){
         ocupados = new boolean[3][3];
         ocRojos = new boolean[3][3];
         ocAzul = new boolean[3][3];
-
+        partidaSigue=true;
     }
 
     public static boolean marcar(int fila, int columna,String color){
@@ -35,23 +38,6 @@ public class Juego3raya {
     }
     public static void edit(int fila, int columna){
         ocupados[fila][columna] = true;
-    }
-
-    public static boolean[][] getOcupados() {
-        return ocupados;
-    }
-
-    public static boolean[][] getOcAzul() {
-        return ocAzul;
-    }
-
-    public static boolean[][] getOcRojos() {
-        return ocRojos;
-    }
-
-
-    public static boolean hay3raya(){
-        return false;
     }
 
     public int[] iaFacil(){
@@ -103,5 +89,52 @@ public class Juego3raya {
         }
         System.out.println();
         System.out.println("============");
+    }
+    private static Boolean mirarFilas(boolean[][] matriz){
+        for (int fila = 0; fila < matriz.length; fila++){
+            int contPos=0;
+            for (int columna = 0; columna < matriz[0].length; columna++){
+                if(matriz[fila][columna]){
+                    contPos++;
+                    if(contPos==3) return true;
+                }else contPos=0;
+            }
+        }
+        return false;
+    }
+
+    private static Boolean mirarColumnas(boolean[][] matriz){
+        for (int columna = 0; columna < matriz[0].length; columna++){
+            int contPos=0;
+            for (int fila  = 0; fila < matriz.length; fila++){
+                if(matriz[fila][columna]){
+                    contPos++;
+                    if(contPos==3) return true;
+                }else contPos=0;
+            }
+        }
+        return false;
+    }
+    private static Boolean mirarDiag(boolean[][] matriz){
+        if(matriz[0][0] && matriz[1][1] && matriz[2][2]) return true;
+        if(matriz[2][0] && matriz[1][1] && matriz[0][2]) return true;
+        return false;
+    }
+        public static boolean hayRaya3(String color){
+        boolean[][] m = new boolean[1][1];
+        if(color=="rojo") m=ocRojos;
+        if(color=="azul") m=ocAzul;
+        if(mirarFilas(m)) return true;
+        if(mirarColumnas(m)) return true;
+        if(mirarDiag(m)) return true;
+        return false;
+    }
+    public static boolean todasLlenas(){
+        for (boolean [] y:ocupados) {
+            for (boolean x : y) {
+                if (!x) return false;
+            }
+        }
+        return true;
     }
 }
