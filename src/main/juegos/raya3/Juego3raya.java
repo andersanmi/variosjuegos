@@ -1,5 +1,7 @@
 package main.juegos.raya3;
 
+import java.util.ArrayList;
+
 public class Juego3raya {
     private static boolean[][] ocupados,ocRojos,ocAzul;
 
@@ -13,11 +15,11 @@ public class Juego3raya {
         ocRojos = new boolean[3][3];
         ocAzul = new boolean[3][3];
     }
-
     public void reiniciarJuego(){
         ocupados = new boolean[3][3];
         ocRojos = new boolean[3][3];
         ocAzul = new boolean[3][3];
+
     }
 
     public static boolean marcar(int fila, int columna,String color){
@@ -59,6 +61,10 @@ public class Juego3raya {
         return pos;
     }
 
+    public boolean posOcupada(int fila, int columna){
+        return ocupados[fila][columna];
+    }
+
     public boolean estaLleno(){
         boolean lleno = true;
         for (int fila=0; fila<3; fila++){
@@ -71,6 +77,7 @@ public class Juego3raya {
         }
         return lleno;
     }
+
 
     //metodos para pruebas
     public static void printMatrix(){

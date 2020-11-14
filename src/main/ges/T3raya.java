@@ -204,7 +204,7 @@ public class T3raya implements Initializable {
     public void b22Exit(MouseEvent mouseEvent) { Exited(2, 2); }
 
     public void Entered(int fila, int columna){
-        if (!Juego3raya.getJuego3raya().estaLleno()){
+        if (!Juego3raya.getJuego3raya().posOcupada(fila,columna)){
             Button b = matrizBotones.get(fila).get(columna);
             if (jugadorActual.equals("rojo")) {
                 circulo.setVisible(true);
