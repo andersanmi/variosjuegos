@@ -155,7 +155,7 @@ public class T3raya implements Initializable {
         else if(jugadorActual.equals("rojo")){ jugadorActual="azul"; }
     }
     public void cambiarTurno(){
-        if (!Juego3raya.getJuego3raya().estaLleno()){
+        if (Juego3raya.getJuego3raya().partidaSigue){
             if(modoDeJuego.equals("2 jugadores")){
                 cambiaJugador();
             }
@@ -219,7 +219,7 @@ public class T3raya implements Initializable {
     public void b22Exit(MouseEvent mouseEvent) { Exited(2, 2); }
 
     public void Entered(int fila, int columna){
-        if (!Juego3raya.getJuego3raya().posOcupada(fila,columna)){
+        if (Juego3raya.getJuego3raya().partidaSigue){
             Button b = matrizBotones.get(fila).get(columna);
             if (jugadorActual.equals("rojo")) {
                 circulo.setVisible(true);

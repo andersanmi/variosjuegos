@@ -96,7 +96,7 @@ public class T4raya implements Initializable {
         else if(jugadorActual=="rojo"){ jugadorActual="azul"; }
     }
     public void cambiarTurno(){
-        if (!Juego4raya.getJuego4raya().estaLleno()){
+        if (Juego4raya.getJuego4raya().partidaSigue){
             if(modoDeJuego=="2 jugadores"){
                 cambiaJugador();
             }
@@ -173,7 +173,7 @@ public class T4raya implements Initializable {
 
 
     public void Entered(int bId){
-        if (!Juego4raya.getJuego4raya().estaLleno()){
+        if (Juego4raya.getJuego4raya().partidaSigue){
             Button boton = listaBotones.get(bId);
             if (jugadorActual == "rojo") {
                 flechaRoja.setVisible(true);
