@@ -47,24 +47,6 @@ public class Juego3raya {
         return pos;
     }
 
-    public boolean posOcupada(int fila, int columna){
-        return ocupados[fila][columna];
-    }
-
-    public boolean estaLleno(){
-        boolean lleno = true;
-        for (int fila=0; fila<3; fila++){
-            for (int columna=0; columna<3; columna++){
-                if (!ocupados[fila][columna]){
-                    lleno = false;
-                    break;
-                }
-            }
-        }
-        return lleno;
-    }
-
-
     //metodos para pruebas
     public static void printMatrix(){
         printMatrixSel(ocupados);

@@ -74,17 +74,6 @@ public class Juego4raya {
         return ia.selCollum();
     }
 
-    public boolean estaLleno(){
-        boolean lleno = true;
-        for (int columna=0; columna<9; columna++){
-            if (!ocupados[0][columna]){
-                lleno = false;
-                break;
-            }
-        }
-        return lleno;
-    }
-
     //metodos para pruebas
     public static void printMatrix(){
         /*
