@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import main.Main;
 import main.juegos.raya3.Juego3raya;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -34,7 +35,7 @@ public class T3raya implements Initializable {
     public String jugadorActual = null;
     public String modoDeJuego ="2 jugadores";
 
-
+    private Main main;
 
 
 
@@ -43,6 +44,9 @@ public class T3raya implements Initializable {
         cargarJuego();
     }
 
+    public void setMain(Main main) {
+        this.main = main;
+    }
 
     public void cargarJuego(){
         //estructura datos
@@ -231,9 +235,9 @@ public class T3raya implements Initializable {
     public void clickReiniciar() {
         resetearJuego();
     }
-    public void clickMenu() {
+    public void clickMenu() throws IOException {
         resetearJuego();
-        Main.cargaMenu();
+        //main.cargaMenu();
     }
 
 

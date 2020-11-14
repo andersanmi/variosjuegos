@@ -1,5 +1,7 @@
 package main.juegos.raya4;
 
+import java.util.ArrayList;
+
 public class Juego4raya {
     private static boolean[][] ocupados,ocRojos,ocAzul;
 
@@ -20,6 +22,8 @@ public class Juego4raya {
     }
 
     public static int meteFicha(int colum,String color){
+        //color: azul, rojo
+
         int fila = -1;
         if(!ocupados[0][colum]){//hay hueco
             for (int i=0;i<6;i++){
@@ -31,6 +35,10 @@ public class Juego4raya {
             }
             if(color=="rojo") ocRojos[fila][colum]=true;
             if(color=="azul") ocAzul[fila][colum]=true;
+            if(hayRaya4(color)){
+                System.out.println(color+" ha ganado");
+                return -1;
+            }
         }
         else System.out.println("error columna llena");
         return fila;
@@ -78,8 +86,9 @@ public class Juego4raya {
 
     //metodos para pruebas
     public static void printMatrix(){
-        printMatrixSel(ocupados);
         /*
+        printMatrixSel(ocupados);
+
         System.out.println("azul");
         printMatrixSel(ocAzul);
         System.out.println("rojo");
@@ -100,5 +109,74 @@ public class Juego4raya {
         }
         System.out.println();
         System.out.println("============");
+    }
+    private static Boolean mirarFilas(boolean[][] matriz){
+        for (int fila = 0; fila < matriz.length; fila++){
+            int contPos=0;
+            for (int columna = 0; columna < matriz[0].length; columna++){
+                if(matriz[fila][columna]){
+                    contPos++;
+                    if(contPos==4) return true;
+                }else contPos=0;
+            }
+        }
+        return false;
+    }
+
+    private static Boolean mirarColumnas(boolean[][] matriz){
+        for (int columna = 0; columna < matriz[0].length; columna++){
+            int contPos=0;
+            for (int fila  = 0; fila < matriz.length; fila++){
+                if(matriz[fila][columna]){
+                    contPos++;
+                    if(contPos==4) return true;
+                }else contPos=0;
+            }
+        }
+        return false;
+    }
+
+    private static Boolean MirarDiagPos(boolean[][] matriz){
+        for (int columna = 8; columna > 0; columna--){
+            int fila=5;
+            int contPos=0;
+            int valCol = columna;
+            int valFil = fila;
+            while(inIndex(valCol,valFil)){
+                System.out.println(valCol+"  "+valFil);
+                System.out.println(matriz[valCol-1][valFil-1]);
+                if(matriz[valFil][valCol]){
+                    contPos++;
+                    if(contPos==4) return true;
+                }
+                else contPos=0;
+                valCol++;
+                valFil++;
+            }
+        }
+        return false;
+    }
+    private static boolean inIndex(int columna,int fila){
+        if(columna>8 || columna<0) return false;
+        if(fila>6 || fila<0) return false;
+        return true;
+    }
+    /*
+    private static ArrayList<Boolean> getDiagneg(){
+
+    }
+    private static boolean get4Trues(){
+
+    }
+
+    */
+    public static boolean hayRaya4(String color){
+        boolean[][] m = new boolean[1][1];
+        if(color=="rojo") m=ocRojos;
+        if(color=="azul") m=ocAzul;
+        //if(mirarFilas(m)) return true;
+        //if(mirarColumnas(m)) return true;
+        //if(MirarDiagPos(m)) return true;
+        return false;
     }
 }
