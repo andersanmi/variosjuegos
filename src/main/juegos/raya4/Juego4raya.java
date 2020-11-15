@@ -1,22 +1,27 @@
 package main.juegos.raya4;
 
-import java.util.ArrayList;
-
 public class Juego4raya {
-    private static boolean[][] ocupados,ocRojos,ocAzul;
 
+    private static boolean[][] ocupados,ocRojos,ocAzul;
+    public static boolean partidaSigue = true;
     private static final Juego4raya miJuego4raya = new Juego4raya();
     public static Juego4raya getJuego4raya(){
         return miJuego4raya;
     }
-    public static boolean partidaSigue = true;
 
+    /**
+     * Carga el juegp, cargando todas las matrices.
+     */
     public void cargarJuego(){
         ocupados = new boolean[6][9];
         ocRojos = new boolean[6][9];
         ocAzul = new boolean[6][9];
         partidaSigue=true;
     }
+
+    /**
+     * Reinicia el juego resetando las matrices.
+     */
     public void reiniciarJuego(){
         ocupados = new boolean[6][9];
         ocRojos = new boolean[6][9];
@@ -24,13 +29,15 @@ public class Juego4raya {
         partidaSigue=true;
     }
 
+    /**
+     * @param colum columna de la matriz
+     * @param color color del jugador actual
+     * Si la columna indicada no está llena, mete la ficha
+     * @return devuelve el numero de la fila si puede meter la ficha, -1 si no puediera
+     */
     public static int meteFicha(int colum,String color){
-        //color: azul, rojo
-        //num positivo columna de la ficha
-        //-1 si no encuentra la ficha
-
         int fila = -1;
-        if(!ocupados[0][colum]){//hay hueco
+        if(!ocupados[0][colum]){
             for (int i=0;i<6;i++){
                 if(!ocupados[5-i][colum]){
                     fila = 5-i;
@@ -44,59 +51,39 @@ public class Juego4raya {
         else System.out.println("error columna llena");
         return fila;
     }
-    public static void edit(int fila, int columna){
-        ocupados[fila][columna] = true;
-    }
 
-    public static boolean[][] getOcupados() {
-        return ocupados;
-    }
-
-    public static boolean[][] getOcAzul() {
-        return ocAzul;
-    }
-
-    public static boolean[][] getOcRojos() {
-        return ocRojos;
-    }
-
-
-    public static boolean hay4raya(){
-        return false;
-    }
-
+    /**
+     * @return devuelve la columna en la que la IA meterá la ficha
+     */
     public int iaFacil(){
         IAFacil ia = new IAFacil();
         return ia.selCollum();
     }
+
+    /**
+     * @return devuelve la columna en la que la IA meterá la ficha
+     */
     public int iaDificil(){
         IADificil ia = new IADificil(ocupados,ocRojos,ocAzul);
         return ia.selCollum();
     }
 
-    public boolean estaLleno(){
-        boolean lleno = true;
-        for (int columna=0; columna<9; columna++){
-            if (!ocupados[0][columna]){
-                lleno = false;
-                break;
-            }
-        }
-        return lleno;
-    }
-
-    //metodos para pruebas
+    /**
+     * Imprime todas las matrices, la general, la del jugador azul y la del jugador rojo
+     */
     public static void printMatrix(){
-        /*
+        System.out.println("Todo");
         printMatrixSel(ocupados);
-
         System.out.println("azul");
         printMatrixSel(ocAzul);
         System.out.println("rojo");
         printMatrixSel(ocRojos);
-        */
     }
 
+    /**
+     * @param mat matriz del juego
+     * Imprime la matriz recibida como parámetro
+     */
     public static void printMatrixSel(boolean[][] mat){
         System.out.println("============");
         for (boolean [] y:mat) {
@@ -111,6 +98,12 @@ public class Juego4raya {
         System.out.println();
         System.out.println("============");
     }
+
+    /**
+     * @param matriz matriz del jugador actual
+     * Comprueba si hay 4 en raya en horizontal
+     * @return devuelve true si hay 4 en raya, false si no lo hubiera
+     */
     private static Boolean mirarFilas(boolean[][] matriz){
         for (int fila = 0; fila < matriz.length; fila++){
             int contPos=0;
@@ -124,6 +117,11 @@ public class Juego4raya {
         return false;
     }
 
+    /**
+     * @param matriz matriz del jugador actual
+     * Comprueba si hay 4 en raya en vertical
+     * @return devuelve true si hay 4 en raya, false si no lo hubiera
+     */
     private static Boolean mirarColumnas(boolean[][] matriz){
         for (int columna = 0; columna < matriz[0].length; columna++){
             int contPos=0;
@@ -137,6 +135,11 @@ public class Juego4raya {
         return false;
     }
 
+    /**
+     * @param matriz matriz del jugador actual
+     * Comprueba si hay 4 en raya en diagonal ascendente
+     * @return devuelve true si hay 4 en raya, false si no lo hubiera
+     */
     private static Boolean mirarDiagPos(boolean[][] matriz){
         //mira las diagonales ascendentes
         for (int columna = 8; columna > 0; columna--){
@@ -145,8 +148,6 @@ public class Juego4raya {
             int valCol = columna;
             int valFil = fila;
             while(inIndex(valFil,valCol)){
-                //System.out.println(valFil+"  "+valCol);
-                //System.out.println("contPos"+contPos);
                 if(matriz[valFil][valCol]){
                     contPos++;
                     if(contPos==4) return true;
@@ -163,8 +164,6 @@ public class Juego4raya {
             int valCol = columna;
             int valFil = fila;
             while(inIndex(valFil,valCol)){
-                //System.out.println(valFil+"  "+valCol);
-                //System.out.println("contPos"+contPos);
                 if(matriz[valFil][valCol]){
                     contPos++;
                     if(contPos==4) return true;
@@ -174,15 +173,26 @@ public class Juego4raya {
                 valFil--;
             }
         }
-
         return false;
     }
+
+    /**
+     * @param fila fila de la matriz
+     * @param columna columna de la matriz
+     * Comprueba si la posición que hace referencia a la fila y columna recibida es correcta
+     * @return devuelve true si la posición es correcta, false si no lo fuese
+     */
     private static boolean inIndex(int fila,int columna){
         if(columna>8 || columna<0) return false;
         if(fila>5 || fila<0) return false;
         return true;
     }
 
+    /**
+     * @param matriz matriz del jugador actual
+     * Comprueba si hay 4 en raya en diagonal descendente
+     * @return devuelve true si hay 4 en raya, false si no lo hubiera
+     */
     private static Boolean mirarDiagNeg(boolean[][] matriz){
         //mira las diagonales descendentes
         for (int columna = 8; columna > 0; columna--){
@@ -191,8 +201,6 @@ public class Juego4raya {
             int valCol = columna;
             int valFil = fila;
             while(inIndex(valFil,valCol)){
-                System.out.println(valFil+"  "+valCol);
-                //System.out.println("contPos"+contPos);
                 if(matriz[valFil][valCol]){
                     contPos++;
                     if(contPos==4) return true;
@@ -209,8 +217,6 @@ public class Juego4raya {
             int valCol = columna;
             int valFil = fila;
             while(inIndex(valFil,valCol)){
-                //System.out.println(valFil+"  "+valCol);
-                //System.out.println("contPos"+contPos);
                 if(matriz[valFil][valCol]){
                     contPos++;
                     if(contPos==4) return true;
@@ -220,11 +226,13 @@ public class Juego4raya {
                 valFil++;
             }
         }
-
-
         return false;
     }
 
+    /**
+     * Comprueba si todas las posiciones de la matriz del juego estas ocupadas
+     * @return devuelve true si la matriz esta completa, false si no lo estuviera
+     */
     public static boolean todasLlenas(){
         for (boolean [] y:ocupados) {
             for (boolean x : y) {
@@ -234,6 +242,11 @@ public class Juego4raya {
         return true;
     }
 
+    /**
+     * @param color color del jugador actual
+     * Comprueba si el jugador actual ha conseguido hacer 4 en raya
+     * @return devuelve true si el jugador actual ha conseguido 4 en raya, false si no lo hubiera conseguido
+     */
     public static boolean hayRaya4(String color){
         boolean[][] m = new boolean[1][1];
         if(color=="rojo") m=ocRojos;

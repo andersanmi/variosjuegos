@@ -12,7 +12,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import main.Main;
 import main.juegos.raya3.Juego3raya;
-import main.juegos.raya4.Juego4raya;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,29 +20,25 @@ import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
 public class T3raya implements Initializable {
-    //prueba
+
     public BorderPane bp;
 
     public Button b00,b01,b02,b10,b11,b12,b20,b21,b22;
     public ArrayList<ArrayList<Button>> matrizBotones = new ArrayList<>();
 
+    private ImageView imagenVacia=new ImageView();
     public ImageView equis, circulo, circulo00, circulo01, circulo02, circulo10, circulo11, circulo12, circulo20, circulo21, circulo22, equis00, equis01, equis02, equis10, equis11, equis12, equis20, equis21, equis22;
     public ArrayList<ArrayList<ImageView>> matrizCirculos = new ArrayList<>();
     public ArrayList<ArrayList<ImageView>> matrizEquises = new ArrayList<>();
-    private ImageView imagenVacia=new ImageView();
 
     public Label textModoJuego;
 
-    //valores estandar del juego
-    //los null hay que definirlos en el momento de carga de juego
     public String jugadorActual = null;
     public String modoDeJuego ="2 jugadores";
-
 
     private Main main;
 
     private String username = null;
-
 
 
     @Override
@@ -55,26 +50,26 @@ public class T3raya implements Initializable {
         this.main = main;
     }
 
+    /**
+     * @param name nombre del usuario
+     * Establece el nombre del usuario actual.
+     */
     public void setUsername(String name){ username = name; }
 
+    /**
+     * Carga el juego completo, cargando la matriz e indicando el jugador actual.
+     */
     public void cargarJuego(){
-        //estructura datos
         cargaMatrices();
         jugadorActual="azul";
         equis.setVisible(false);
         circulo.setVisible(false);
-        //cambios interfaz
         textModoJuego.setText(modoDeJuego);
     }
-    private void finPartida(String ganador){
-        //Mira si la partida ha acabado y hace lo que tenga que hacer para finalizarla
-        //acaba el juego
-        if(ganador=="empate") textModoJuego.setText("Empate");
-        else textModoJuego.setText("Ha ganado el jugador "+ganador);
 
-        Juego3raya.getJuego3raya().partidaSigue=false;
-    }
-
+    /**
+     * Carga la matriz del jeugo completa, añadiendo todos los circulos y las equises en ella.
+     */
     private void cargaMatrices() {
         ArrayList<Button> fila0 = new ArrayList<>();
         fila0.add(b00);
@@ -126,6 +121,9 @@ public class T3raya implements Initializable {
 
     }
 
+    /**
+     * Resetea el juego a zero, descoloreando los círculos y las equises.
+     */
     public void resetearJuego(){
         textModoJuego.setText(modoDeJuego);
         for (ArrayList<ImageView> fila:matrizCirculos){
@@ -142,18 +140,36 @@ public class T3raya implements Initializable {
         Juego3raya.getJuego3raya().reiniciarJuego();
     }
 
-
+    /**
+     * Hace una pausa del juego
+     */
     private void delay(){
         try { TimeUnit.MILLISECONDS.sleep(200); }
         catch (InterruptedException e) { e.printStackTrace(); }
     }
 
+    /**
+     * @param ganador ganador de la partida
+     * Termina con la partida y dictamina el ganador si lo hubiera, si no sería empate.
+     */
+    private void finPartida(String ganador){
+        if(ganador=="empate") textModoJuego.setText("Empate");
+        else textModoJuego.setText("Ha ganado el jugador "+ganador);
+
+        Juego3raya.getJuego3raya().partidaSigue=false;
+    }
+
+    /**
+     * Cambia el turno del jugador en el modo 2 jugadores.
+     */
     private void cambiaJugador(){
-        //antes de hacer un cambio de jugador mirar si este ha ganado la partida
-        //o si la partida esta completada, tablero lleno
         if(jugadorActual.equals("azul")){ jugadorActual="rojo"; }
         else if(jugadorActual.equals("rojo")){ jugadorActual="azul"; }
     }
+
+    /**
+     * Cambia el turno del jugador si la partida sigue activa.
+     */
     public void cambiarTurno(){
         if (Juego3raya.getJuego3raya().partidaSigue){
             if(modoDeJuego.equals("2 jugadores")){
@@ -168,6 +184,14 @@ public class T3raya implements Initializable {
             }
         }
     }
+
+    /**
+     * @param fila fila de la matriz
+     * @param columna columna de la matriz
+     * Si la partida sigue activa y la posición no está llena, mete la ficha en la fila y columna indicada y
+     * marca el cuadrado.
+     * Si hay 3 en raya o el panel está completo, termina la partida.
+     */
     public void accionBoton(int fila, int columna){
         if(Juego3raya.getJuego3raya().partidaSigue){
             Juego3raya juego = Juego3raya.getJuego3raya();
@@ -177,10 +201,15 @@ public class T3raya implements Initializable {
                 if(juego.todasLlenas()) finPartida("empate");
                 cambiarTurno();
             }
-            //Juego3raya.getJuego3raya().printMatrix();
         }
     }
 
+    /**
+     * @param fila fila de la matriz
+     * @param columna columna de la matriz
+     * Marca la posición referida a la fila y columna recibidas como parámetro con un círculo o con una equis,
+     * dependiendo del jugador actual.
+     */
     public void marcarCuadrado(int fila, int columna){
         ImageView circulo = matrizCirculos.get(fila).get(columna);
         ImageView equis = matrizEquises.get(fila).get(columna);
@@ -198,7 +227,6 @@ public class T3raya implements Initializable {
     public void click21(ActionEvent actionEvent) {accionBoton(2, 1);}
     public void click22(ActionEvent actionEvent) {accionBoton(2, 2);}
 
-    //para animacion de flechas
     public void b00In(MouseEvent mouseEvent)   { Entered(0, 0); }
     public void b00Exit(MouseEvent mouseEvent) { Exited(0, 0); }
     public void b01In(MouseEvent mouseEvent)   { Entered(0, 1); }
@@ -218,6 +246,13 @@ public class T3raya implements Initializable {
     public void b22In(MouseEvent mouseEvent)   { Entered(2, 2); }
     public void b22Exit(MouseEvent mouseEvent) { Exited(2, 2); }
 
+    /**
+     * @param fila fila de la matriz
+     * @param columna columna de la matriz
+     * Visualiza el círculo o equis, dependiendo del jugador actual, del botón que haga referencia la fila y
+     * columna recibida como parámetro.
+     * Esto lo hará únicamente cuando al partida este activa y no se haya terminado.
+     */
     public void Entered(int fila, int columna){
         if (Juego3raya.getJuego3raya().partidaSigue){
             Button b = matrizBotones.get(fila).get(columna);
@@ -231,29 +266,54 @@ public class T3raya implements Initializable {
         }
     }
 
+    /**
+     * @param fila fila de la matriz
+     * @param columna columna de la matriz
+     * Dejará de visualizar el círculo o equis, dependiendo el jugador actual, en la posición que haga
+     * referencia a la fila y columna recibida como paámetro.
+     */
     public void Exited(int fila, int columna){
         Button b = matrizBotones.get(fila).get(columna);
         b.setGraphic(imagenVacia);
     }
 
-    //menu
+    /**
+     * @param modo modo de juego
+     * Cambia el modo de juego al indicado por el parámetro recibido y resetea el juego
+     * El modo de juego lo indicara el usuario en la interfaz.
+     */
     private void cambioModoDeJuego(String modo){
         modoDeJuego=modo;
         textModoJuego.setText(modo);
         resetearJuego();
     }
 
+    /**
+     * Cambia el modo de juego a modo 2 jugadores.
+     */
     public void click2jugadores() { cambioModoDeJuego("2 jugadores"); }
+
+    /**
+     * Cambia el modo de juego a modo IA fácil.
+     */
     public void clickIAfacil() {cambioModoDeJuego("IA facil"); }
+
+    /**
+     * Resetea el juego.
+     */
     public void clickReiniciar() {
         resetearJuego();
     }
+
+    /**
+     * @throws IOException
+     * Resetea el juego y vuelve a la pantalla del menú, cerrando la ventana actual.
+     */
     public void clickMenu() throws IOException {
         resetearJuego();
         main.cargaMenu(username);
         Stage stage = (Stage) bp.getScene().getWindow();
         stage.close();
     }
-
 
 }
